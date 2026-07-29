@@ -49,7 +49,7 @@
   .wrap {
     position: relative;
     z-index: 2;
-    max-width: 46rem;
+    max-width: 55rem;
     margin: 0 auto;
     padding: 0 1.5rem;
     background: var(--bg);
@@ -72,7 +72,7 @@
 
   .lead {
     margin-top: 1rem;
-    max-width: 34rem;
+    max-width: 40rem;
     font-size: 1.125rem;
     line-height: 1.7;
     color: var(--muted);
@@ -174,7 +174,7 @@
   .frame-intro {
     margin-top: -.75rem;
     margin-bottom: 1.5rem;
-    max-width: 34rem;
+    max-width: 40rem;
     font-size: .9375rem;
     color: var(--muted);
   }
@@ -303,9 +303,9 @@
   }
 
   /* Out in the beige, off the panel's bottom-right corner. The panel spans the full
-     46rem column, so the note claims whatever beige is left over and caps at 11rem.
-     68em is the narrowest window where that leftover is still wide enough to read. */
-  @media (min-width: 68em) {
+     55rem column, so the note claims whatever beige is left over and caps at 11rem.
+     77em is the narrowest window where that leftover is still wide enough to read. */
+  @media (min-width: 77em) {
     .backdrop-note {
       position: absolute;
       bottom: 2.5rem;
@@ -313,7 +313,7 @@
       flex-direction: column-reverse; /* lifts the arrow above the note */
       align-items: flex-start;
       gap: .5rem;
-      width: min(11rem, calc((100vw - 46rem) / 2 - 2.5rem));
+      width: min(11rem, calc((100vw - 55rem) / 2 - 2.5rem));
       margin: 0;
     }
     .note-text {
