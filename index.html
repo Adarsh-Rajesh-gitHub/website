@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Adarsh Rajesh</title>
+<meta name="description" content="Adarsh Rajesh — CS &amp; Business Honors (CSB) at UT Austin. Interested in AI/ML, systems, backend development, and quant.">
+
+<meta property="og:title" content="Adarsh Rajesh">
+<meta property="og:description" content="CS &amp; Business Honors (CSB) at UT Austin. Interested in AI/ML, systems, backend development, and quant.">
+<meta property="og:url" content="https://adarshrajesh.com">
+<meta property="og:type" content="website">
+
+<link rel="canonical" href="https://adarshrajesh.com">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ctext x='3' y='24' font-size='24' font-family='sans-serif' font-weight='600'%3EA%3C/text%3E%3C/svg%3E">
+
+<style>
+  :root {
+    --bg: #fefdfa;
+    --bg-edge: #f4f2ec;
+    --text: #1c1c1e;
+    --muted: #8e8e93;
+    --border: #e5e5e7;
+    --accent: oklch(0.55 0.15 250);
+    --spring: cubic-bezier(.34, 1.56, .64, 1);
+  }
+
+  * { box-sizing: border-box; margin: 0; }
+
+  body {
+    background: var(--bg-edge);
+    color: var(--text);
+    font: 1rem/1.6 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* Paper grain. Delete this rule and the .noise div to get a flat background. */
+  .noise {
+    position: fixed;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    opacity: .4;
+    background-repeat: repeat;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  }
+
+  .wrap {
+    position: relative;
+    z-index: 2;
+    max-width: 46rem;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+    background: var(--bg);
+    animation: rise .6s ease-out;
+  }
+
+  @keyframes rise {
+    from { opacity: 0; transform: translateY(8px); }
+    to   { opacity: 1; transform: none; }
+  }
+
+  .hero { padding: 6rem 0 4rem; }
+
+  h1 {
+    font-size: clamp(2rem, 5vw, 2.75rem);
+    font-weight: 600;
+    letter-spacing: -.02em;
+    line-height: 1.15;
+  }
+
+  .lead {
+    margin-top: 1rem;
+    max-width: 34rem;
+    font-size: 1.125rem;
+    line-height: 1.7;
+    color: var(--muted);
+  }
+  .lead strong { color: var(--text); font-weight: 500; }
+
+  section { padding-bottom: 4rem; }
+
+  .label {
+    margin-bottom: 1.5rem;
+    font-size: .6875rem;
+    font-weight: 500;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .sublabel {
+    margin: 2.5rem 0 .5rem;
+    font-size: .6875rem;
+    font-weight: 500;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .list { list-style: none; padding: 0; }
+  .list li + li { border-top: 1px solid var(--border); }
+
+  /* Experience / project rows */
+  .role {
+    display: flex;
+    gap: .875rem;
+    align-items: flex-start;
+    padding: 1.375rem 0;
+  }
+
+  .mark {
+    width: 48px;
+    height: 48px;
+    flex-shrink: 0;
+    border-radius: 10px;
+    background: #fff;
+    border: 1px solid var(--border);
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+  }
+  .mark img { width: 100%; height: 100%; object-fit: contain; padding: 3px; }
+  /* Project rows that link out. Keeps the row chrome, drops the default anchor styling. */
+  a.role {
+    color: inherit;
+    text-decoration: none;
+    transition: opacity .3s;
+  }
+  a.role:hover .title { color: var(--accent); }
+  a.role:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 4px;
+    border-radius: 6px;
+  }
+
+  .role-body { min-width: 0; }
+
+  .meta {
+    display: block;
+    margin-bottom: .25rem;
+    font-size: .6875rem;
+    color: var(--muted);
+  }
+
+  .title {
+    display: block;
+    font-size: 1.0625rem;
+    font-weight: 500;
+    line-height: 1.4;
+  }
+
+  .desc {
+    margin-top: .5rem;
+    font-size: .9375rem;
+    line-height: 1.65;
+    color: var(--muted);
+  }
+
+  /* Who Am I */
+  .frame-intro {
+    margin-top: -.75rem;
+    margin-bottom: 1.5rem;
+    max-width: 34rem;
+    font-size: .9375rem;
+    color: var(--muted);
+  }
+
+  /* One photo at a time. Clicking the frame swaps to the next. */
+  .frame { margin: 0; max-width: 17rem; }
+
+  .frame-btn {
+    position: relative;
+    display: block;
+    width: 100%;
+    padding: 0;
+    border: 0;
+    background: none;
+    border-radius: 10px;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    transition: transform .4s var(--spring);
+  }
+  .frame-btn:hover { transform: scale(1.015); }
+  .frame-btn:focus-visible { outline: 2px solid rgba(255, 255, 255, .85); outline-offset: 5px; }
+
+  .frame-btn img {
+    display: none;
+    width: 100%;
+    aspect-ratio: 3 / 4;
+    object-fit: cover;
+    border-radius: 10px;
+    background: var(--bg-edge);
+  }
+  .frame-btn img.active { display: block; }
+
+  .frame-count {
+    position: absolute;
+    right: .5rem;
+    bottom: .5rem;
+    padding: .1875rem .4375rem;
+    border-radius: 999px;
+    background: rgba(18, 18, 20, .55);
+    color: rgba(255, 255, 255, .9);
+    font-size: .625rem;
+    letter-spacing: .06em;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .frame-cap {
+    margin-top: .875rem;
+    font-size: .8125rem;
+    line-height: 1.5;
+  }
+
+  /* Footer */
+  footer {
+    margin-top: 2rem;
+    padding: 2.5rem 0;
+    border-top: 1px solid var(--border);
+  }
+  .links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.25rem;
+    list-style: none;
+    padding: 0;
+  }
+  .links a {
+    padding-bottom: .125rem;
+    font-size: .9375rem;
+    color: var(--text);
+    text-decoration: none;
+    border-bottom: 1px solid var(--border);
+    transition: color .3s, border-color .3s;
+  }
+  .links a:hover { color: var(--accent); border-color: var(--accent); }
+  .colophon { margin-top: 1.25rem; font-size: .75rem; color: var(--muted); }
+
+  /* Who Am I — sunset backdrop panel. Swap closing.jpg to change the photo. */
+  .whoami {
+    position: relative;
+    margin: 4rem -1.5rem 0; /* cancels .wrap's padding so the panel matches the column width */
+    padding: 3.5rem 0 3rem;
+    background-color: #241d18; /* warm dark fallback until closing.jpg exists */
+    background-image:
+      linear-gradient(rgba(0,0,0,.45), rgba(0,0,0,.2) 30%, rgba(0,0,0,.35) 70%, rgba(0,0,0,.6)),
+      url("images/photos/closing.jpg");
+    background-size: cover;
+    background-position: center;
+  }
+  .whoami .inner { padding: 0 1.5rem; }
+  .whoami .label { color: rgba(255, 255, 255, .72); }
+  .whoami .frame-intro { color: rgba(255, 255, 255, .82); }
+  .whoami .frame-btn img { box-shadow: 0 8px 24px rgba(0, 0, 0, .4); }
+  .whoami .frame-cap {
+    color: rgba(255, 255, 255, .9);
+    text-shadow: 0 1px 4px rgba(0, 0, 0, .55);
+  }
+
+  /* Note + arrow calling out the backdrop photo. Sits inside the panel's
+     bottom-right until there's enough beige margin to move out into. */
+  .backdrop-note {
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+    gap: .375rem;
+    margin-top: 2.5rem;
+  }
+  .note-text {
+    max-width: 19rem;
+    padding: .5rem .75rem;
+    border: 1px solid rgba(255, 255, 255, .22);
+    border-radius: 7px;
+    background: rgba(18, 18, 20, .42);
+    -webkit-backdrop-filter: blur(3px);
+    backdrop-filter: blur(3px);
+    font-size: .75rem;
+    line-height: 1.45;
+    color: rgba(255, 255, 255, .93);
+  }
+  .note-arrow {
+    width: 3rem;
+    height: 1.8rem;
+    flex-shrink: 0;
+    fill: none;
+    stroke: rgba(255, 255, 255, .7);
+    stroke-width: 1.5;
+    stroke-linecap: round;
+  }
+
+  /* Out in the beige, off the panel's bottom-right corner. The column is 46rem
+     and the note needs 12.5rem beside it, so 77em leaves the margin room to spare. */
+  @media (min-width: 77em) {
+    .backdrop-note {
+      position: absolute;
+      bottom: 2.5rem;
+      left: calc(100% + .75rem);
+      flex-direction: column-reverse; /* lifts the arrow above the note */
+      align-items: flex-start;
+      gap: .5rem;
+      width: 11rem;
+      margin: 0;
+    }
+    .note-text {
+      max-width: none;
+      border-color: var(--border);
+      background: none;
+      -webkit-backdrop-filter: none;
+      backdrop-filter: none;
+      color: var(--muted);
+    }
+    .note-arrow {
+      width: 4.5rem;
+      height: 2.7rem;
+      transform: scaleX(-1); /* aims back at the backdrop, now on the left */
+      stroke: rgba(28, 28, 30, .32);
+    }
+  }
+</style>
+</head>
+
+<body>
+<div class="noise"></div>
+
+<div class="wrap">
+
+  <header class="hero">
+    <h1>Adarsh Rajesh</h1>
+    <p class="lead">
+      Hey! I&apos;m Adarsh! I&apos;m a junior studying computer science honors and
+      business honors (CSB) at the University of Texas at Austin. I&apos;m interested
+      in AI/ML, systems, backend development, and quant. Feel free to contact me to chat!
+    </p>
+  </header>
+
+  <!-- ===================== WHAT I'VE DONE ===================== -->
+  <section>
+    <h2 class="label">What I&apos;ve Done</h2>
+
+    <ul class="list">
+      <li>
+        <div class="role">
+          <span class="mark"><img src="images/logos/alpha-ai-engineering.png" alt="Alpha AI Engineering logo"></span>
+          <div class="role-body">
+            <span class="meta">AI Engineering Intern &middot; Alpha AI Engineering &middot; Jun&ndash;Aug 2026</span>
+            <span class="title">LLM architecture research &amp; tutoring fine-tunes</span>
+            <p class="desc">
+              Building a 160M-parameter language model that reasons over an external
+              memory store instead of memorizing facts, and fine-tuned Qwen3-4B
+              (rank-16 QLoRA) on multi-turn tutoring conversations &mdash; lifting mean
+              evaluation score from 6.26 to 9.34 and strict-turn pass rate from 18% to 64%.
+            </p>
+          </div>
+        </div>
+      </li>
+
+      <li>
+        <div class="role">
+          <span class="mark"><img src="images/logos/ut-austin.png" alt="UT Austin logo"></span>
+          <div class="role-body">
+            <span class="meta">Student Research Member, Agentic AI &middot; UT Austin &middot; Sep 2025 &ndash; Jan 2026</span>
+            <span class="title">Agentic AI architectures &amp; safety</span>
+            <p class="desc">
+              Presented on autonomy boundaries, failure modes, and security risks like
+              prompt injection and tool misuse; analyzed scalability challenges in
+              multi-agent coordination and proposed guardrails via validation, constraints,
+              and human-in-the-loop oversight.
+            </p>
+          </div>
+        </div>
+      </li>
+
+      <li>
+        <div class="role">
+          <span class="mark"><img src="images/logos/gmt.png" alt="Texas Global Macro Team logo"></span>
+          <div class="role-body">
+            <span class="meta">Research Member, Commodity Forecasting &middot; Texas Global Macro Team &middot; Aug 2025 &ndash; Present</span>
+            <span class="title">Deep-learning commodity price forecasting</span>
+            <p class="desc">
+              Deployed N-HiTS and N-BEATS models in Python to forecast global commodity
+              prices, and led a quantitative study of the orthodox tea market &mdash;
+              integrating trade, weather, and economic indicators to model price volatility.
+            </p>
+          </div>
+        </div>
+      </li>
+
+    </ul>
+
+    <!-- Projects live inside this section. Delete this h3 + the ul below to remove them.
+         Each row is an <a class="role"> so the whole row is clickable. -->
+    <h3 class="sublabel">Projects</h3>
+    <ul class="list">
+      <li>
+        <a class="role" href="https://github.com/Adarsh-Rajesh-gitHub/CPU-Verilog">
+          <div class="role-body">
+            <span class="meta">SystemVerilog &middot; Computer Architecture &middot; RTL Design</span>
+            <span class="title">Out-of-Order CPU</span>
+            <p class="desc">
+              A 64-bit processor for a custom instruction set, with register renaming, a
+              16-entry reorder buffer, reservation stations, and a load-store queue that
+              forwards stores to loads. Two instructions issue per cycle and execute out of
+              order while still committing in program order.
+            </p>
+          </div>
+        </a>
+      </li>
+
+      <li>
+        <a class="role" href="https://agents-starter.adarshrajesh.workers.dev">
+          <div class="role-body">
+            <span class="meta">TypeScript &middot; Cloudflare Workers AI &middot; Durable Objects</span>
+            <span class="title">Screenshot Steps Helper</span>
+            <p class="desc">
+              A Cloudflare Workers app that turns screenshots and a user goal into
+              click-by-click UI navigation steps, using Durable Objects for session
+              memory so context persists across follow-up questions.
+            </p>
+          </div>
+        </a>
+      </li>
+
+      <li>
+        <a class="role" href="https://github.com/Adarsh-Rajesh-gitHub/EndtoEndTinker">
+          <div class="role-body">
+            <span class="meta">C &middot; Compilers &middot; Custom ISA</span>
+            <span class="title">Tinker Assembler + Simulator</span>
+            <p class="desc">
+              An end-to-end C toolchain that assembles programs for a custom 64-bit ISA into
+              a binary object format with separate code and data segments, then executes them
+              on a simulator. Ships three demo programs written by hand in the assembly
+              language, including a matrix multiply.
+            </p>
+          </div>
+        </a>
+      </li>
+
+      <li>
+        <a class="role" href="https://github.com/Adarsh-Rajesh-gitHub/Cache">
+          <div class="role-body">
+            <span class="meta">C &middot; Computer Architecture &middot; Memory Hierarchy</span>
+            <span class="title">Two-Level Cache Simulator</span>
+            <p class="desc">
+              Models a split instruction and data L1 sitting over an inclusive L2, with
+              write-back write-allocate and back-invalidation on eviction. Comparing LRU
+              against random replacement surfaced a cyclic access pattern where random
+              eviction halves the miss count.
+            </p>
+          </div>
+        </a>
+      </li>
+
+      <li>
+        <a class="role" href="https://github.com/Adarsh-Rajesh-gitHub/NLP-Entity-Resolution">
+          <div class="role-body">
+            <span class="meta">Python &middot; scikit-learn &middot; TF-IDF</span>
+            <span class="title">Product Catalog Entity Resolution</span>
+            <p class="desc">
+              Works out which Amazon and Google listings refer to the same product, scoring
+              name pairs with TF-IDF character n-grams and fuzzy token matching. Thresholds
+              are tuned on a validation split and reported on held-out test data.
+            </p>
+          </div>
+        </a>
+      </li>
+    </ul>
+  </section>
+
+  <!-- ===================== WHO AM I (sunset backdrop panel) ===================== -->
+  <section class="whoami" aria-label="Who am I">
+    <div class="inner">
+      <h2 class="label">Who Am I</h2>
+      <!-- Edit this line, or delete it, to taste. -->
+      <p class="frame-intro">A couple of frames from outside the terminal.</p>
+
+      <!-- One photo shows at a time. To add another, drop in an <img> with its own
+           data-caption — the caption underneath and the counter follow along. -->
+      <figure class="frame">
+        <button class="frame-btn" type="button" aria-label="Show the next photo">
+          <img class="active" src="images/photos/photo-1.jpg" alt="Me at the Pantheon in Rome" data-caption="The Pantheon, Rome.">
+          <img src="images/photos/photo-2.jpg" alt="A plate of cajun potatoes in spicy mayo" data-caption="Cajun potatoes: potatoes with spicy mayo, my favorite food.">
+          <span class="frame-count">1 / 2</span>
+        </button>
+        <figcaption class="frame-cap">The Pantheon, Rome.</figcaption>
+      </figure>
+
+      <!-- Swap in your own funnier line. The arrow points at the backdrop photo. -->
+      <div class="backdrop-note">
+        <p class="note-text">Not a stock photo &mdash; I took this one on a trip to Yellowstone.</p>
+        <svg class="note-arrow" viewBox="0 0 80 48" aria-hidden="true">
+          <path d="M4 43C28 45 58 39 71 10" vector-effect="non-scaling-stroke"/>
+          <path d="M71 10l-11 7M71 10l2 13" vector-effect="non-scaling-stroke"/>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <ul class="links">
+      <li><a href="mailto:adarshrajesh@utexas.edu">Email</a></li>
+      <li><a href="https://github.com/Adarsh-Rajesh-gitHub">GitHub</a></li>
+      <li><a href="https://www.linkedin.com/in/adarshrajeshr">LinkedIn</a></li>
+    </ul>
+    <p class="colophon">Austin, Texas</p>
+  </footer>
+
+</div>
+
+<script>
+  (function () {
+    var frame = document.querySelector(".frame");
+    if (!frame) return;
+
+    var shots = Array.prototype.slice.call(frame.querySelectorAll("img"));
+    var cap = frame.querySelector(".frame-cap");
+    var count = frame.querySelector(".frame-count");
+    var i = 0;
+
+    function show(n) {
+      i = (n + shots.length) % shots.length;
+      shots.forEach(function (img, k) { img.classList.toggle("active", k === i); });
+      if (cap) cap.textContent = shots[i].getAttribute("data-caption") || "";
+      if (count) count.textContent = (i + 1) + " / " + shots.length;
+    }
+
+    /* A lone photo has nothing to switch to, so leave the markup alone. */
+    if (shots.length < 2) {
+      if (count) count.style.display = "none";
+      return;
+    }
+
+    frame.querySelector(".frame-btn").addEventListener("click", function () { show(i + 1); });
+    show(0);
+  })();
+</script>
+</body>
+</html>
