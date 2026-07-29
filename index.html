@@ -290,9 +290,10 @@
     stroke-linecap: round;
   }
 
-  /* Out in the beige, off the panel's bottom-right corner. The column is 46rem
-     and the note needs 12.5rem beside it, so 77em leaves the margin room to spare. */
-  @media (min-width: 77em) {
+  /* Out in the beige, off the panel's bottom-right corner. The panel spans the full
+     46rem column, so the note claims whatever beige is left over and caps at 11rem.
+     68em is the narrowest window where that leftover is still wide enough to read. */
+  @media (min-width: 68em) {
     .backdrop-note {
       position: absolute;
       bottom: 2.5rem;
@@ -300,7 +301,7 @@
       flex-direction: column-reverse; /* lifts the arrow above the note */
       align-items: flex-start;
       gap: .5rem;
-      width: 11rem;
+      width: min(11rem, calc((100vw - 46rem) / 2 - 2.5rem));
       margin: 0;
     }
     .note-text {
