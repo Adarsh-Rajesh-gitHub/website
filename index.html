@@ -100,7 +100,7 @@
   }
 
   .list { list-style: none; padding: 0; }
-  .list li + li { border-top: 1px solid var(--border); }
+  .list > li + li { border-top: 1px solid var(--border); } /* direct children only, so nested bullets stay clean */
 
   /* Experience / project rows */
   .role {
@@ -157,6 +157,18 @@
     line-height: 1.65;
     color: var(--muted);
   }
+
+  /* For roles covering more than one workstream, where a single block would run long. */
+  .desc-list {
+    margin-top: .5rem;
+    padding-left: 1.05rem;
+    list-style: disc;
+    font-size: .9375rem;
+    line-height: 1.65;
+    color: var(--muted);
+  }
+  .desc-list li + li { margin-top: .45rem; }
+  .desc-list .thread { color: var(--text); } /* names the workstream without resorting to bold */
 
   /* Who Am I */
   .frame-intro {
@@ -347,12 +359,31 @@
           <div class="role-body">
             <span class="meta">AI Engineering Intern &middot; Alpha AI Engineering &middot; Jun&ndash;Aug 2026</span>
             <span class="title">LLM architecture research &amp; tutoring fine-tunes</span>
-            <p class="desc">
-              Building a 160M-parameter language model that reasons over an external
-              memory store instead of memorizing facts, and fine-tuned Qwen3-4B
-              (rank-16 QLoRA) on multi-turn tutoring conversations &mdash; lifting mean
-              evaluation score from 6.26 to 9.34 and strict-turn pass rate from 18% to 64%.
-            </p>
+            <ul class="desc-list">
+              <li>
+                <span class="thread">LLM architecture research:</span> Extended a group LLM
+                research codebase from single-fact recall to multi-step retrieval over
+                Wikidata5M, adding an exact-match KV store with a requery-on-miss and
+                abstention state machine; the retrieval path resolved 500/500 lookups on
+                entities held out of training.
+              </li>
+              <li>
+                Ran matched dense and store-augmented arms at 160M and 360M scale, training
+                to 7.2B tokens on 8&times; A100 with torchrun DDP, with generalization held
+                out along entity, phrasing, and chain-structure axes.
+              </li>
+              <li>
+                <span class="thread">Tutoring LLM (Qwen3-4B + QLoRA):</span> Fine-tuned
+                Qwen3-4B with rank-16 QLoRA on 600 multi-turn tutoring conversations,
+                building pipelines for synthetic data generation, source-provenance
+                auditing, safety filtering, training, and reproducible evaluation.
+              </li>
+              <li>
+                Increased mean evaluation score from 6.26 to 9.34, strict-turn pass rate
+                from 18% to 64%, and critical-requirement compliance from 62% to 96% on a
+                held-out 50-turn benchmark.
+              </li>
+            </ul>
           </div>
         </div>
       </li>
