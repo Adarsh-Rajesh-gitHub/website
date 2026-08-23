@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Adarsh Rajesh · Sophia layout</title>
+  <meta name="description" content="Adarsh Rajesh — CSB student at UT Austin working across AI/ML, systems, and quant.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600;8..60,700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #fff; --fg: #1a1a1a; --muted: #6b7280; --border: #e5e7eb;
+      --accent: #111827; --accent-hover: #374151; --on-accent: #fff;
+      --chip-bg: #f3f4f6; --header-bg: rgba(255,255,255,.86); --max-width: 760px;
+    }
+    [data-theme="dark"] {
+      --bg: #0f1115; --fg: #e5e7eb; --muted: #9ca3af; --border: #262a33;
+      --accent: #e5e7eb; --accent-hover: #fff; --on-accent: #0f1115;
+      --chip-bg: #1f232d; --header-bg: rgba(15,17,21,.86);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg); color: var(--fg); font-family: "Source Serif 4", Georgia, serif;
+      line-height: 1.6; -webkit-font-smoothing: antialiased; transition: background .2s, color .2s;
+    }
+    a { color: inherit; text-decoration: none; }
+    .site-header { position: sticky; top: 0; z-index: 10; background: var(--header-bg); backdrop-filter: saturate(180%) blur(10px); border-bottom: 1px solid var(--border); }
+    .nav { max-width: var(--max-width); margin: 0 auto; padding: 16px 24px; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+    .nav-brand { font-weight: 700; font-size: 1.05rem; }
+    .nav-links { display: flex; align-items: center; gap: 22px; list-style: none; }
+    .nav-links a { color: var(--muted); font-size: .95rem; font-weight: 500; transition: color .15s; }
+    .nav-links a:hover { color: var(--fg); }
+    .theme-toggle { background: none; border: 0; cursor: pointer; padding: 6px; display: inline-flex; color: var(--muted); border-radius: 6px; }
+    .theme-toggle:hover { color: var(--fg); background: var(--chip-bg); }
+    .theme-toggle svg { width: 18px; height: 18px; }
+    .theme-toggle .moon { display: none; }
+    [data-theme="dark"] .theme-toggle .sun { display: none; }
+    [data-theme="dark"] .theme-toggle .moon { display: inline; }
+    main { max-width: var(--max-width); margin: 0 auto; padding: 0 24px; }
+    .hero { padding: 96px 0 72px; position: relative; min-height: 360px; }
+    .eyebrow { color: var(--muted); font-weight: 500; margin-bottom: 8px; }
+    .hero h1 { max-width: 520px; font-size: clamp(2.5rem, 7vw, 3.3rem); font-weight: 700; letter-spacing: -.03em; margin-bottom: 16px; }
+    .hero-copy { max-width: 545px; color: var(--muted); font-size: 1.2rem; margin-bottom: 30px; }
+    .hero-photo { position: absolute; top: 96px; right: 0; width: 190px; height: 210px; border-radius: 6px; object-fit: cover; border: 1px solid var(--border); }
+    .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+    .btn { display: inline-block; padding: 7px 22px; border-radius: 8px; font-weight: 500; font-size: .95rem; border: 1px solid transparent; transition: all .15s; }
+    .btn-primary { background: var(--accent); color: var(--on-accent); }
+    .btn-primary:hover { background: var(--accent-hover); }
+    .btn-ghost { border-color: var(--border); color: var(--fg); }
+    .btn-ghost:hover { border-color: var(--accent); }
+    .section { padding: 40px 0; border-top: 1px solid var(--border); }
+    .section-title { font-size: .85rem; font-weight: 600; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); margin-bottom: 18px; }
+    .about p { margin-bottom: 16px; font-size: 1.05rem; }
+    .about p:last-child { margin-bottom: 0; }
+    .timeline { list-style: none; }
+    .timeline-item { display: grid; grid-template-columns: 170px minmax(0,1fr); gap: 24px; padding-bottom: 24px; }
+    .timeline-item:last-child { padding-bottom: 0; }
+    .timeline-meta { color: var(--muted); font-size: .85rem; font-weight: 500; padding-top: 3px; white-space: nowrap; }
+    .timeline-body h3 { font-size: 1.1rem; margin-bottom: 2px; }
+    .timeline-body h3 a { color: var(--accent); text-decoration: underline; text-decoration-thickness: 1px; text-decoration-color: var(--muted); text-underline-offset: 3px; }
+    .timeline-body h3 a::after { content: " ↗"; font-size: .8em; color: var(--muted); }
+    .timeline-org { color: var(--muted); font-weight: 500; margin-bottom: 4px; }
+    .timeline-body p:last-child { color: var(--fg); }
+    .tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; list-style: none; }
+    .tag { background: var(--chip-bg); color: var(--muted); font: 500 .78rem/1.2 system-ui, sans-serif; padding: 4px 10px; border-radius: 999px; }
+    .fun-grid { display: grid; grid-template-columns: 230px minmax(0, 1fr); gap: 24px; align-items: start; }
+    .fun-photo { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; border-radius: 8px; border: 1px solid var(--border); }
+    .fun-lead { font-size: 1.08rem; margin-bottom: 14px; }
+    .fun-copy { color: var(--muted); }
+    .links { display: flex; flex-wrap: wrap; gap: 8px 20px; }
+    .link-subtle { color: var(--muted); font-size: .95rem; border-bottom: 1px solid transparent; }
+    .link-subtle:hover { color: var(--fg); border-bottom-color: var(--fg); }
+    .contact-intro { color: var(--muted); font-size: 1.05rem; margin-bottom: 24px; }
+    .email { color: var(--fg); font-weight: 500; }
+    .site-footer { max-width: var(--max-width); margin: 0 auto; padding: 40px 24px 56px; border-top: 1px solid var(--border); color: var(--muted); font-size: .9rem; }
+    @media (max-width: 640px) {
+      .nav { align-items: flex-start; }
+      .nav-links { gap: 12px; flex-wrap: wrap; justify-content: flex-end; }
+      .nav-links a { font-size: .83rem; }
+      .hero { padding: 58px 0 48px; min-height: 0; }
+      .hero-photo { position: static; width: 92px; height: 108px; float: right; margin: 0 0 18px 18px; }
+      .hero h1 { font-size: 2.35rem; }
+      .hero-copy { clear: both; font-size: 1.1rem; }
+      .timeline-item { grid-template-columns: 1fr; gap: 4px; }
+      .timeline-meta { white-space: normal; }
+      .fun-grid { grid-template-columns: 1fr; gap: 16px; }
+      .fun-photo { width: min(100%, 300px); aspect-ratio: 4 / 5; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <nav class="nav" aria-label="Primary navigation">
+      <a href="#top" class="nav-brand">Adarsh Rajesh</a>
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#fun">Fun</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li>
+          <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Toggle dark mode">
+            <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"></path></svg>
+            <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+          </button>
+        </li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <img class="hero-photo" src="images/photos/profile.jpg" alt="Adarsh Rajesh">
+      <p class="eyebrow">Hi! I'm</p>
+      <h1>Adarsh Rajesh</h1>
+      <p class="hero-copy">A CSB student at UT Austin building across AI/ML, systems, backend engineering, and quant.</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="#experience">View my work</a>
+        <a class="btn btn-ghost" href="#contact">Get in touch</a>
+      </div>
+    </section>
+
+    <section id="about" class="section">
+      <h2 class="section-title">About</h2>
+      <div class="about">
+        <p>I'm a junior studying computer science honors and business honors (CSB) at the University of Texas at Austin. I work across AI/ML, systems, backend development, and quantitative research.</p>
+        <p>I'm especially interested in reliable model behavior, efficient infrastructure, and turning research ideas into working systems.</p>
+        <p>When I’m away from a screen, I play tennis for fun, go camping, travel, spend time around animals, and take food seriously.</p>
+      </div>
+    </section>
+
+    <section id="education" class="section">
+      <h2 class="section-title">Education</h2>
+      <ol class="timeline">
+        <li class="timeline-item">
+          <div class="timeline-meta">2024 — 2028</div>
+          <div class="timeline-body">
+            <h3>B.S. in Computer Science &amp; Business Honors</h3>
+            <p class="timeline-org">The University of Texas at Austin · Austin, TX</p>
+            <p>Computer science honors and business honors (CSB), with focus areas in machine learning, algorithms, computer architecture, systems, and finance.</p>
+          </div>
+        </li>
+      </ol>
+    </section>
+
+    <section id="experience" class="section">
+      <h2 class="section-title">Experience</h2>
+      <ol class="timeline">
+        <li class="timeline-item">
+          <div class="timeline-meta">Jun — Aug 2026</div>
+          <div class="timeline-body"><h3>AI Engineering Intern</h3><p class="timeline-org">Alpha AI Engineering · Remote</p><p>Extended multi-step retrieval experiments and built QLoRA tutoring-model pipelines for synthetic data, provenance audits, safety filtering, training, and evaluation.</p></div>
+        </li>
+        <li class="timeline-item">
+          <div class="timeline-meta">Sep 2025 — Jan 2026</div>
+          <div class="timeline-body"><h3>Student Research Member, Agentic AI</h3><p class="timeline-org">The University of Texas at Austin · Austin, TX</p><p>Analyzed autonomy boundaries, prompt injection, tool misuse, multi-agent coordination, and practical guardrails.</p></div>
+        </li>
+        <li class="timeline-item">
+          <div class="timeline-meta">Aug 2025 — Present</div>
+          <div class="timeline-body"><h3>Research Member, Commodity Forecasting</h3><p class="timeline-org">Texas Global Macro Team · Austin, TX</p><p>Built deep-learning forecasts for global commodities and studied tea-market volatility using trade, weather, and economic indicators.</p></div>
+        </li>
+      </ol>
+    </section>
+
+    <section id="projects" class="section">
+      <h2 class="section-title">Projects</h2>
+      <ol class="timeline">
+        <li class="timeline-item"><div class="timeline-meta">SystemVerilog</div><div class="timeline-body"><h3><a href="https://github.com/Adarsh-Rajesh-gitHub/CPU-Verilog">Out-of-Order CPU</a></h3><p>64-bit processor with register renaming, a reorder buffer, reservation stations, and load-store forwarding.</p><ul class="tags"><li class="tag">RTL design</li><li class="tag">Computer architecture</li></ul></div></li>
+        <li class="timeline-item"><div class="timeline-meta">TypeScript</div><div class="timeline-body"><h3><a href="https://agents-starter.adarshrajesh.workers.dev">Screenshot Steps Helper</a></h3><p>Cloudflare Workers app that turns screenshots and a goal into click-by-click UI navigation steps with session memory.</p><ul class="tags"><li class="tag">Workers AI</li><li class="tag">Durable Objects</li></ul></div></li>
+        <li class="timeline-item"><div class="timeline-meta">C</div><div class="timeline-body"><h3><a href="https://github.com/Adarsh-Rajesh-gitHub/EndtoEndTinker">Tinker Assembler + Simulator</a></h3><p>End-to-end assembler and simulator for a custom 64-bit instruction set, including a matrix-multiply demo.</p><ul class="tags"><li class="tag">Compilers</li><li class="tag">Custom ISA</li></ul></div></li>
+        <li class="timeline-item"><div class="timeline-meta">Python</div><div class="timeline-body"><h3><a href="https://github.com/Adarsh-Rajesh-gitHub/NLP-Entity-Resolution">Product Catalog Entity Resolution</a></h3><p>Matches Amazon and Google listings using TF-IDF character n-grams and fuzzy token matching.</p><ul class="tags"><li class="tag">scikit-learn</li><li class="tag">NLP</li></ul></div></li>
+      </ol>
+    </section>
+
+    <section id="fun" class="section">
+      <h2 class="section-title">Outside the terminal</h2>
+      <div class="fun-grid">
+        <img class="fun-photo" src="images/photos/camping.jpg" alt="A tent and campfire at night">
+        <div>
+          <p class="fun-lead">I play tennis for fun, go camping when I can, and like having a few interests that have nothing to do with a benchmark.</p>
+          <p class="fun-copy">I also enjoy traveling, spending time around animals, and finding good food. The camera roll is a mix of places, campfires, meals, and the occasional photo that is much better as a memory than as a profile picture.</p>
+          <ul class="tags"><li class="tag">Tennis</li><li class="tag">Camping</li><li class="tag">Travel</li><li class="tag">Animals</li><li class="tag">Food</li></ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="section">
+      <h2 class="section-title">Contact</h2>
+      <p class="contact-intro">Reach me at <span class="email">adarsh.rajesh [at] utexas [dot] edu</span>, or through any of these.</p>
+      <div class="links"><a class="link-subtle" href="mailto:adarshrajesh@utexas.edu">Email</a><a class="link-subtle" href="https://github.com/Adarsh-Rajesh-gitHub">GitHub</a><a class="link-subtle" href="https://www.linkedin.com/">LinkedIn</a><a class="link-subtle" href="index.html">Main site</a></div>
+    </section>
+  </main>
+  <footer class="site-footer"><p>© <span id="year"></span> Adarsh Rajesh</p></footer>
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+    const root = document.documentElement;
+    const saved = localStorage.getItem('adarsh-theme');
+    if (saved === 'dark' || (!saved && window.matchMedia('(prefers-color-scheme: dark)').matches)) root.setAttribute('data-theme', 'dark');
+    document.getElementById('theme-toggle').addEventListener('click', () => {
+      const dark = root.getAttribute('data-theme') === 'dark';
+      root.toggleAttribute('data-theme', !dark);
+      if (!dark) root.setAttribute('data-theme', 'dark');
+      localStorage.setItem('adarsh-theme', dark ? 'light' : 'dark');
+    });
+  </script>
+</body>
+</html>
