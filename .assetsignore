@@ -3,6 +3,7 @@
 .assetsignore
 .wrangler
 .DS_Store
+.lavish
 node_modules
 README.md
 wrangler.jsonc

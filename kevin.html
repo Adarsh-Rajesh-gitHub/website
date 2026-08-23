@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Adarsh Rajesh · Kevin layout</title>
   <meta name="description" content="Adarsh Rajesh — computer science and business honors student at UT Austin.">
+  <meta name="robots" content="noindex,follow">
+  <link rel="canonical" href="https://adarshrajesh.com/">
   <style>
     :root { color-scheme: light; }
     * { box-sizing: border-box; }
@@ -20,7 +22,7 @@
     .heading { display: flex; flex-direction: row; gap: 26px; align-items: flex-start; }
     .heading .vertical { display: flex; flex-direction: column; flex: 1; min-width: 0; }
     .heading h1 { margin: 0; font-size: clamp(2rem, 5vw, 2.6rem); line-height: 1.1; }
-    .heading h3 { margin: 10px 0; font-size: 1rem; font-weight: normal; color: #555; }
+    .heading .contact-meta { margin: 10px 0; font-size: 1rem; font-weight: normal; color: #555; }
     .heading p { margin: 0 0 12px; }
     .heading img {
       display: block;
@@ -60,7 +62,7 @@
     <header class="heading">
       <div class="vertical">
         <h1>Adarsh Rajesh</h1>
-        <h3>adarshrajesh@utexas.edu ‖ Austin, TX</h3>
+        <p class="contact-meta">adarshrajesh@utexas.edu ‖ Austin, TX</p>
         <p>
           I am a junior studying computer science honors and business honors (CSB) at the
           University of Texas at Austin. I'm interested in: AI/ML, systems, backend development,
@@ -71,27 +73,27 @@
           learn. Feel free to <a href="mailto:adarshrajesh@utexas.edu">get in touch</a>.
         </p>
       </div>
-      <img src="images/photos/profile.jpg" alt="Adarsh Rajesh">
+      <img src="images/photos/profile.jpg" alt="Adarsh Rajesh" width="1600" height="1066" decoding="async" fetchpriority="high">
     </header>
 
     <h2>Experience</h2>
     <ul>
       <li>
         <a class="item-title" href="#">AI Engineering Intern · Alpha AI Engineering</a><br>
-        <span class="meta">Jun–Aug 2026</span><br>
+        <span class="meta"><time datetime="2026-06">Jun</time>–<time datetime="2026-08">Aug 2026</time></span><br>
         I studied different ways to externalize an LLM’s factual knowledge into a fact store, comparing MemorySplit with
         dense transformers across factual recall, compositional reasoning, training efficiency, and missing-fact behavior.
         I also fine-tuned Qwen3-4B with QLoRA to make its tutoring responses more consistent with a prescribed pedagogy.
       </li>
       <li>
         <a class="item-title" href="#">Student Research Member, Agentic AI · UT Austin</a><br>
-        <span class="meta">Sep 2025–Jan 2026</span><br>
+        <span class="meta"><time datetime="2025-09">Sep 2025</time>–<time datetime="2026-01">Jan 2026</time></span><br>
         Studied autonomy boundaries, prompt injection, tool misuse, multi-agent scaling, and
         guardrails based on validation, constraints, and human oversight.
       </li>
       <li>
         <a class="item-title" href="#">Research Member, Commodity Forecasting · Texas Global Macro Team</a><br>
-        <span class="meta">Aug 2025–Present</span><br>
+        <span class="meta"><time datetime="2025-08">Aug 2025</time>–Present</span><br>
         Deployed N-HiTS and N-BEATS models in Python and led a quantitative study of tea prices
         using trade, weather, and economic indicators.
       </li>
@@ -101,7 +103,7 @@
     <ul>
       <li>
         <span class="item-title">B.S. Computer Science &amp; Business Honors</span><br>
-        <span class="meta">The University of Texas at Austin · Austin, TX · 2024–2028</span><br>
+        <span class="meta">The University of Texas at Austin · Austin, TX · <time datetime="2024">2024</time>–<time datetime="2028">2028</time></span><br>
         Computer science honors and business honors (CSB); interests include machine learning,
         computer architecture, algorithms, systems, and finance.
       </li>
@@ -138,7 +140,7 @@
     <h2>Fun</h2>
     <div class="fun-block">
       <figure class="fun-photo">
-        <img src="images/photos/camping-collage.jpg" alt="Camping, a tent, a campfire, and roasting marshmallows">
+        <img src="images/photos/camping-collage.jpg" alt="Camping, a tent, a campfire, and roasting marshmallows" width="2274" height="1000" loading="lazy" decoding="async">
         <figcaption>Camping, a tent, a campfire, and roasting marshmallows. A good reset from a week of screens.</figcaption>
       </figure>
       <p>
@@ -150,7 +152,7 @@
       </p>
     </div>
 
-    <p class="footer">© 2026 Adarsh Rajesh · <a href="mailto:adarshrajesh@utexas.edu">Email</a> · <a href="https://github.com/Adarsh-Rajesh-gitHub">GitHub</a> · <a href="https://www.linkedin.com/">LinkedIn</a></p>
+    <p class="footer">© 2026 Adarsh Rajesh · <a href="mailto:adarshrajesh@utexas.edu">Email</a> · <a href="https://github.com/Adarsh-Rajesh-gitHub" rel="me">GitHub</a> · <a href="https://www.linkedin.com/in/adarshrajeshr" rel="me">LinkedIn</a></p>
   </main>
 </body>
 </html>
